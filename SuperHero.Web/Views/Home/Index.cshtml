@@ -1,0 +1,83 @@
+﻿@model SuperHero.Web.ViewModels.SuperHeroViewModel
+@{
+    ViewBag.Title = "Hero | Villain";
+}
+<style>
+    thead, tbody {
+        display: block;
+    }
+
+    tbody {
+        height: 375px; /* Just for the demo          */
+        overflow-y: auto; /* Trigger vertical scroll    */
+        overflow-x: hidden; /* Hide the horizontal scroll */
+    }
+</style>
+<div class="content">
+    <div class="logo cursive" style="font-size:20px; padding:50px">
+        Find your favourite Hero or Villain information.
+    </div>
+    <div class="subscribe">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm6-6 col-sm-offset-3">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        @Html.Label("Type your character name", htmlAttributes: new { @class = "sr-only" })
+                        @Html.TextBox("txtSearchName", Model.FilteredSearch, new { @class = "form-control transparent", placeholder = "Your character name", @id = "txtSearchName" })
+                    </div>
+                    <button type="submit" class="btn btn-success btn-fill" id="btnSearch" value="Search">Search</button>
+                </form>
+            </div>
+        </div>
+        <br />
+        @if (Model.SearchOutput.Any())
+        {
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 col-sm4-4 col-sm-offset-2 alert alert-info">
+                    <table class="table table-responsive table-hover">
+                        <thead>
+                            <tr>
+                                <th colspan="3" style="font-size:medium; text-align:center;">
+                                    <div class="cursive" style="font-size:20px;">Look what characters we have found!</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.SearchOutput)
+                            {
+                                <tr style="cursor:pointer" onclick="location.href = '@(Url.Action("Index", "Character", new { Id = item.Id }))'">
+                                    <td>
+                                        <img src="@item.Image.Url" style="width:40%" />
+                                    </td>
+                                    <td style="vertical-align:middle;width:30%" class="cursive">
+                                        @item.Name
+                                    </td>
+                                    <td style="vertical-align:middle;width:30%" class="cursive">
+                                        @item.Appearance.Gender
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+        else
+        {
+            if (!string.IsNullOrEmpty(Model.FilteredSearch))
+            {
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 col-sm4-4 col-sm-offset-2 alert alert-danger">
+                        <div class="col-md-3" style="text-align:center">
+                            <img src="~/images/oh.png" style="width:70%" />
+                        </div>
+                        <div class="col-md-9 logo cursive" style="font-size:20px;color:red;margin-top:0">
+                            We haven't heard about <font style="text-decoration:underline">@Model.FilteredSearch</font> but we're taking notes to add your favourite character
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+    </div>
+</div>

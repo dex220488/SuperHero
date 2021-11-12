@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @*@Scripts.Render("~/bundles/modernizr")*@
+</head>
+<body>
+
+    <nav class="navbar navbar-transparent navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        @Html.ActionLink("Home", "Index", "Home")
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+    <div class="main" style="background: url('/images/default.jpg') no-repeat center top;">
+        <!--    Change the image source '/images/default.jpg' with your favourite image.     -->
+        <div class="cover black" data-color="black"></div>
+        <!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
+        <div class="container">
+            <input type="hidden" id="global-schema" value="@ViewContext.HttpContext.Request.Url.Scheme" />
+            <input type="hidden" id="global-host" value="@ViewContext.HttpContext.Request.Url.Authority" />
+            <input type="hidden" id="global-pathBase" value="@ViewContext.HttpContext.Request.Url.AbsolutePath" />
+            <input type="hidden" id="global-controller" value="@ViewContext.RouteData.Values["controller"].ToString()" />
+            <input type="hidden" id="global-action" value="@ViewContext.RouteData.Values["action"].ToString()" />
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <img src="/images/hero_villain_logo.png" style="display: block; margin: auto; " />
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+            <br />
+            @RenderBody()
+        </div>
+        <div class="footer">
+            <div class="container">
+                Made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>.
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

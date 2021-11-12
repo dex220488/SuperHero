@@ -1,0 +1,91 @@
+﻿@model SuperHero.DataAccess.Entities.Output.SearchOutput
+@{
+    ViewBag.Title = "Character Details";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-right">
+                <form class="form-inline" role="form" action="@Url.Action("Index", "Home")">
+                    <div class="form-group">
+                        @Html.Label("Type your character name", htmlAttributes: new { @class = "sr-only" })
+                        @Html.TextBox("txtSearchName", Model.Name, new { @class = "form-control transparent", placeholder = "Your character name", @id = "txtSearchName" })
+                    </div>
+                    <button type="submit" class="btn btn-danger btn-fill" id="btnSearch">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row alert alert-info" style="background-color:white; opacity:0.9">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3" style="text-align:center">
+                    <img src="@Model.Image.Url" style="width:75%"/>
+                </div>
+                <div class="col-md-3">
+                    <h3>Biography</h3><br />
+                    <strong>Full Name:</strong> @Model.Biography.FullName<br />
+                    <strong>Alter Egos:</strong> @Model.Biography.AlterEgos<br />
+                    <strong>Aliases:</strong>
+                    <ul>
+                        @foreach (var item in Model.Biography.Aliases)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                    <strong>Place of Birth:</strong> @Model.Biography.PlaceOfBirth<br />
+                    <strong>First Appearance:</strong> @Model.Biography.FirstAppearance<br />
+                    <strong>Publisher:</strong> @Model.Biography.Publisher<br />
+                    <strong>Alignment:</strong> @Model.Biography.Alignment<br />
+                </div>
+                <div class="col-md-3">
+                    <h3>Appearance</h3><br />
+                    <strong>Gender:</strong> @Model.Appearance.Gender<br />
+                    <strong>Race:</strong> @Model.Appearance.Race<br />
+                    <strong>Height:</strong>
+                    <ul>
+                        @foreach (var item in Model.Appearance.Height)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                    <strong>Weight:</strong>
+                    <ul>
+                        @foreach (var item in Model.Appearance.Weight)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                    <strong>Eye Color:</strong> @Model.Appearance.EyeColor<br />
+                    <strong>Hair Color:</strong> @Model.Appearance.HairColor<br />
+                </div>
+                <div class="col-md-3">
+                    <h3>Connections</h3><br />
+                    <strong>Group Affiliation:</strong> @Model.Connections.GroupAffiliation<br /><br />
+                    <strong>Relatives:</strong> @Model.Connections.GroupAffiliation<br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" style="text-align:center; vertical-align:top"></div>
+                <div class="col-md-3">
+                    <h3>Powerstats</h3><br />
+                    <strong>Intelligence:</strong> @Model.PowerStats.Intelligence<br />
+                    <strong>Strength:</strong> @Model.PowerStats.Strength<br />
+                    <strong>Speed:</strong>@Model.PowerStats.Speed<br />
+                    <strong>Durability:</strong> @Model.PowerStats.Durability<br />
+                    <strong>Power:</strong> @Model.PowerStats.Power<br />
+                    <strong>Combat:</strong> @Model.PowerStats.Combat<br />
+                </div>
+                <div class="col-md-3">
+                    <h3>Work</h3><br />
+                    <strong>Occupation:</strong> @Model.Work.Occupation<br />
+                    <strong>Base:</strong> @Model.Work.Base<br />
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

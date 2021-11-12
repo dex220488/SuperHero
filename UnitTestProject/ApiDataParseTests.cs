@@ -5,7 +5,7 @@ using static SuperHero.DataAccess.Entities.Api.Enums;
 namespace UnitTestProject
 {
     [TestClass]
-    public class ApiDataParse
+    public class ApiDataParseTests
     {
         [TestMethod]
         public void ParseSearchOutput_ParseSuccessfully_ReturnsNoFail()

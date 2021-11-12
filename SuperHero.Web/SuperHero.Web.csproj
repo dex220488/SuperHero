@@ -255,6 +255,7 @@
     <Content Include="images\thumb_video.png" />
     <Content Include="images\video_bg.jpg" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\SuperHeroDexLabs - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
